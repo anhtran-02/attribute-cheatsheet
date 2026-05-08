@@ -438,51 +438,80 @@
       <div class="card-title"><span class="icon">💡</span>Attribute là gì?</div>
       <div class="def-row">
         <span class="def-label">Attribute</span>
-        <span class="def-text">"Nhãn" hoặc chỉ số đã tính sẵn, gắn lên mỗi <strong>user / merchant</strong> dựa trên hành vi hoặc dữ liệu.</span>
-      </div>
-      <div class="def-row">
-        <span class="def-label">Attribute</span>
-        <span class="def-text">= <strong>Nguyên liệu</strong> (1 chiều dữ liệu đã xử lý)<br>
-          <em>VD: tổng chi 7 ngày = 850K, tier = Gold, platform = iOS</em></span>
+        <span class="def-text"><strong>Thuộc tính của người dùng</strong> được quản lý bởi hệ thống.<br>
+          <em>Ví dụ: Giới tính, Độ tuổi, Nghề nghiệp, Nơi ở, Tier, Tổng chi tiêu,...</em></span>
       </div>
       <div class="def-row">
         <span class="def-label">Segment</span>
-        <span class="def-text">= <strong>Kết quả lọc</strong> từ 1 hoặc nhiều attribute<br>
-          <em>VD: user có tổng chi 7 ngày &gt; 500K và tier = Gold</em></span>
+        <span class="def-text">= <strong>Danh sách user</strong> lọc từ 1 hoặc nhiều attribute — dùng để activate tại các channels (Journey, Promo, Widget, Ads, Chat, Notification)<br>
+          <em>VD: user Giới tính = Nữ AND Độ tuổi = 25–34</em></span>
       </div>
-      <div class="def-row" style="border-bottom:none; padding-bottom:0;">
-        <span class="def-label" style="background:#D1FAE5;color:#065F46;">≠ BQ raw</span>
-        <span class="def-text">Attribute đã được tính &amp; đồng bộ vào Athena — <strong>BU dùng ngay</strong>, không cần query BQ.</span>
+      <!-- UI illustration -->
+      <div style="margin-top:10px;border:1px solid var(--gray-border);border-radius:10px;overflow:hidden;background:#fff;">
+        <div style="background:#F9FAFB;border-bottom:1px solid var(--gray-border);padding:7px 12px;font-size:10.5px;color:var(--gray);font-weight:600;">Athena — Segment Builder (minh họa)</div>
+        <div style="padding:10px 14px;">
+          <div style="border:1.5px solid #E879F9;border-radius:8px;padding:8px 12px;margin-bottom:8px;background:#FDFAFF;">
+            <div style="font-size:10px;color:#9CA3AF;margin-bottom:4px;display:flex;align-items:center;gap:6px;">
+              <span style="background:#F3E8FF;color:#7C3AED;border-radius:4px;padding:1px 6px;font-size:9.5px;">OR ∨</span>
+              <span style="font-weight:600;color:var(--dark);font-size:11px;">THÔNG TIN VỀ GIỚI TÍNH CỦA USER</span>
+            </div>
+            <div style="display:flex;gap:8px;align-items:baseline;font-size:10.5px;margin-bottom:6px;">
+              <span style="color:var(--gray);font-size:10px;">Attribute details:</span>
+              <span style="color:#E879F9;font-weight:600;">Demographics &gt; Thông tin về giới tính của user ⓘ</span>
+            </div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:6px 10px;align-items:start;">
+              <span style="font-size:10px;color:var(--red);font-weight:600;padding-top:2px;">* Tag ID</span>
+              <div>
+                <div style="border:1.5px solid #E879F9;border-radius:6px;padding:4px 8px;font-size:10px;color:#9CA3AF;margin-bottom:3px;">Select tag ID</div>
+                <div style="border:1px solid var(--gray-border);border-radius:6px;background:white;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                  <div style="padding:4px 10px;font-size:10.5px;border-bottom:1px solid #F3F4F6;color:var(--dark);">user_gender_female</div>
+                  <div style="padding:4px 10px;font-size:10.5px;border-bottom:1px solid #F3F4F6;color:var(--dark);">user_gender_male</div>
+                  <div style="padding:4px 10px;font-size:10.5px;color:var(--dark);">user_gender_unknown</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:0 10px;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+              <div style="width:1px;height:14px;background:#E879F9;"></div>
+              <span style="font-size:10px;font-weight:700;color:#E879F9;background:#FDF4FF;border-radius:4px;padding:1px 8px;border:1px solid #E879F9;">Tag</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+              <div style="width:1px;height:14px;background:var(--primary);"></div>
+              <span style="font-size:10px;font-weight:700;color:var(--primary);background:var(--primary-light);border-radius:4px;padding:1px 8px;border:1px solid var(--primary-mid);">Attribute</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Use Cases -->
+    <!-- Channels -->
     <div class="card">
-      <div class="card-title"><span class="icon">🎯</span>6 Use Cases chính</div>
+      <div class="card-title"><span class="icon">📡</span>6 Channels chính sử dụng Segment</div>
       <div class="uc-grid">
         <div class="uc-tile uc-journey">
-          <div class="uc-title">🔄 Journey / Automation</div>
-          <div class="uc-example">Trigger push nếu user không login 30 ngày</div>
+          <div class="uc-title">🔄 Journey</div>
+          <div class="uc-example">Trigger / filter bước trong automation flow theo hành vi user</div>
         </div>
         <div class="uc-tile uc-promo">
           <div class="uc-title">🎁 Promotion</div>
-          <div class="uc-example">Cashback cho user chi 100K–500K</div>
+          <div class="uc-example">Target đúng nhóm nhận khuyến mãi theo tiêu chí</div>
         </div>
         <div class="uc-tile uc-widget">
-          <div class="uc-title">🖼️ Widget / Banner</div>
-          <div class="uc-example">Banner tính năng mới → user chưa dùng</div>
+          <div class="uc-title">🖼️ Widget</div>
+          <div class="uc-example">Hiển thị nội dung cá nhân hóa cho từng nhóm user</div>
         </div>
         <div class="uc-tile uc-ads">
           <div class="uc-title">📣 Advertising</div>
-          <div class="uc-example">Retarget user xem nhưng chưa mua 14 ngày</div>
+          <div class="uc-example">Xuất segment cho paid channels (Facebook, Google, DSP)</div>
         </div>
         <div class="uc-tile uc-chat">
-          <div class="uc-title">💬 Chat / CS</div>
-          <div class="uc-example">User Gold → hàng ưu tiên<br><em style="font-size:10px;">Contact hanh.tran3</em></div>
+          <div class="uc-title">💬 Chat</div>
+          <div class="uc-example">Route user vào luồng CS phù hợp theo profile<br><em style="font-size:10px;">Contact hanh.nguyen6</em></div>
         </div>
         <div class="uc-tile uc-exclude">
-          <div class="uc-title">🚫 Exclusion</div>
-          <div class="uc-example">Loại user đã mua trong 7 ngày gần nhất</div>
+          <div class="uc-title">🔔 Notification</div>
+          <div class="uc-example">Push / in-app notification đến đúng nhóm mục tiêu</div>
         </div>
       </div>
     </div>
@@ -621,6 +650,15 @@
             <div style="display:flex;gap:6px;font-size:11.5px;"><span style="color:#065F46;font-weight:700;flex-shrink:0;">→</span>Xử lý lỗi data / segment sai</div>
           </div>
         </div>
+        <div style="background:#DBEAFE;border-radius:10px;padding:11px 13px;border:1.5px solid #93C5FD;">
+          <div style="font-weight:800;font-size:12px;color:#1E40AF;margin-bottom:7px;">🛡️ Segment Admin</div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div style="display:flex;gap:6px;font-size:11.5px;"><span style="color:#1E40AF;font-weight:700;flex-shrink:0;">→</span>Review &amp; approve attribute mới (Thứ 3 &amp; Thứ 5)</div>
+            <div style="display:flex;gap:6px;font-size:11.5px;"><span style="color:#1E40AF;font-weight:700;flex-shrink:0;">→</span>Trigger sync data (Tag use cases)</div>
+            <div style="display:flex;gap:6px;font-size:11.5px;"><span style="color:#1E40AF;font-weight:700;flex-shrink:0;">→</span>Support DA khi gặp vấn đề pipeline / config</div>
+            <div style="display:flex;gap:6px;font-size:11.5px;"><span style="color:#1E40AF;font-weight:700;flex-shrink:0;">→</span>Tư vấn thiết kế attribute cho edge cases</div>
+          </div>
+        </div>
         <div style="background:#FFF7ED;border-left:3px solid var(--accent);border-radius:6px;padding:7px 10px;font-size:11px;color:#78350F;">
           ⚠️ Segment sai ≠ luôn do hệ thống<br>trace: <strong>BU demand → DA logic → DA data → Sync</strong>
         </div>
@@ -688,22 +726,22 @@
       </div>
 
       <div class="config-row">
-        <div class="config-q">① User Type</div>
+        <div class="config-q">① Target ai?<br><span style="font-size:10px;color:var(--primary);font-weight:600;">field: User Type</span></div>
         <div class="config-arrow">→</div>
         <div class="config-a"><span class="chip">User</span> <span class="chip">Merchant</span> <span class="chip">Merchant Store Code</span></div>
       </div>
       <div class="config-row">
-        <div class="config-q">② Mô tả attribute</div>
+        <div class="config-q">② Mô tả attribute<br><span style="font-size:10px;color:var(--primary);font-weight:600;">field: Name / Description</span></div>
         <div class="config-arrow">→</div>
         <div class="config-a">Ghi rõ tên dự án, mục tiêu, logic tính — để admin review và BU sau này dễ dùng</div>
       </div>
       <div class="config-row">
-        <div class="config-q">③ Source</div>
+        <div class="config-q">③ Data đến từ đâu?<br><span style="font-size:10px;color:var(--primary);font-weight:600;">field: Source</span></div>
         <div class="config-arrow">→</div>
         <div class="config-a"><span class="chip">Batch</span> BQ/Airflow — DA setup &nbsp;|&nbsp; <span class="chip">Streaming</span> realtime — BE setup</div>
       </div>
       <div class="config-row">
-        <div class="config-q">④ Aggregation Type</div>
+        <div class="config-q">④ Tính toán thế nào?<br><span style="font-size:10px;color:var(--primary);font-weight:600;">field: Aggregation Type</span></div>
         <div class="config-arrow">→</div>
         <div class="config-a">
           Nhãn mới nhất → <span class="chip">MOST_RECENT</span><br>
@@ -712,7 +750,7 @@
         </div>
       </div>
       <div class="config-row">
-        <div class="config-q">⑤ Integration Level</div>
+        <div class="config-q">⑤ BU lọc theo gì?<br><span style="font-size:10px;color:var(--primary);font-weight:600;">field: Integration Level</span></div>
         <div class="config-arrow">→</div>
         <div class="config-a">
           Chỉ lọc theo nhãn → <span class="chip">TAG_ID</span><br>
@@ -721,7 +759,7 @@
         </div>
       </div>
       <div class="config-row">
-        <div class="config-q">⑥ Nhãn có quản lý trước không?</div>
+        <div class="config-q">⑥ Nhãn có quản lý trước?<br><span style="font-size:10px;color:var(--primary);font-weight:600;">field: Tag Management</span></div>
         <div class="config-arrow">→</div>
         <div class="config-a">
           Có sẵn &amp; &lt;50 nhãn → <span class="chip">Predefined Tag</span> — khai báo ở <em>Tag Info</em><br>
@@ -729,12 +767,21 @@
         </div>
       </div>
       <div class="config-row">
-        <div class="config-q">⑦ User giữ nhiều tag cùng lúc?</div>
+        <div class="config-q">⑦ User giữ nhiều tag cùng lúc?<br><span style="font-size:10px;color:var(--primary);font-weight:600;">field: Attribute Type</span></div>
         <div class="config-arrow">→</div>
         <div class="config-a">
           Không (tag mới thay tag cũ) → <span class="chip">Single Tag</span> <em style="color:var(--gray);">(tier, KYC)</em><br>
           Có (tích lũy nhiều tag) → <span class="chip">Multiple Tag</span> <em style="color:var(--gray);">(banks used, gifts)</em>
         </div>
+      </div>
+      <div style="background:#FEF3C7;border-left:3px solid var(--accent);border-radius:8px;padding:9px 12px;margin-top:4px;font-size:11.5px;color:#78350F;">
+        <strong>⚠️ Một số tổ hợp chưa support trên UI:</strong><br>
+        <span style="display:inline-flex;flex-wrap:wrap;gap:4px;margin-top:4px;">
+          <span style="background:#FEF3C7;border:1px solid #FCD34D;border-radius:4px;padding:1px 7px;font-size:10.5px;"><code>PARTIAL_VALUE_BY_TAG</code> + Single Tag</span>
+          <span style="background:#FEF3C7;border:1px solid #FCD34D;border-radius:4px;padding:1px 7px;font-size:10.5px;"><code>Multiple Tag</code> + Single Tag</span>
+          <span style="background:#FEF3C7;border:1px solid #FCD34D;border-radius:4px;padding:1px 7px;font-size:10.5px;"><code>MOST_RECENT_WDR</code> + Single Tag</span>
+        </span><br>
+        <span style="margin-top:4px;display:block;">Và một vài trường hợp chưa hiện trên UI cũng không support. Nếu nhu cầu chưa được hệ thống support → liên hệ <strong>anh.tran17</strong>.</span>
       </div>
 
       <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--gray-border);">
